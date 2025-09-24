@@ -2,8 +2,15 @@ package cartes;
 
 public class Borne extends Carte {
 
-	public Borne() {
-		// TODO Auto-generated constructor stub
+	private int km;
+
+	public Borne(int km) {
+		this.km = km;
+	}
+
+	@Override
+	public String toString() {
+		return km + "KM";
 	}
 
 }
