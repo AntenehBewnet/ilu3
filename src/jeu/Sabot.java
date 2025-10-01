@@ -1,9 +1,7 @@
 package jeu;
 
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 
@@ -13,12 +11,11 @@ public class Sabot implements Iterable<Carte>{
 
 	private Carte[] cartes;
 	private int nbCartes;
-	private int conccurentMod;
+	private int nbrOpereation;
 	
 	public Sabot(Carte[] cartes) {
 		this.cartes = cartes;
 		nbCartes = cartes.length;
-		conccurentMod = 0;
 		
 	}
 	
@@ -28,7 +25,7 @@ public class Sabot implements Iterable<Carte>{
 	
 	public void ajouterCarte(Carte carte) {
 		if (nbCartes >= cartes.length) {
-            throw new IllegalStateException("CapacitÃ© maximale du sabot atteinte");
+            throw new IllegalStateException("Capacite maximale du sabot atteinte");
         }
 		cartes[nbCartes] = carte;
 		nbCartes++;
@@ -37,7 +34,6 @@ public class Sabot implements Iterable<Carte>{
 
 	@Override
 	public Iterator<Carte> iterator() {
-		// TODO Auto-generated method stub
 		return new SabotIterator();
 	}
 	
@@ -45,13 +41,13 @@ public class Sabot implements Iterable<Carte>{
 	
 	private class SabotIterator implements Iterator<Carte>{
 		private int curseur;
-		private int conccurent;
 		private boolean removable;
+		private int nbrOperationRefference;
 		
 		public SabotIterator() {
 			curseur = 0;
-			conccurent = conccurentMod;
 			removable = true;
+			nbrOperationRefference = nbrOpereation;
 		}
 
 		@Override
@@ -63,10 +59,7 @@ public class Sabot implements Iterable<Carte>{
 		@Override
 		public Carte next() {
 			if (!hasNext()) {
-				throw new NoSuchElementException();
-			}
-			if (conccurent != conccurentMod) {
-				throw new ConcurrentModificationException();
+				throw new NoSuchElementException("la liste est fini");
 			}
 			removable = true;
 			return cartes[curseur++];
@@ -74,17 +67,18 @@ public class Sabot implements Iterable<Carte>{
 		
 		@Override
 		public void remove() {
-			if (conccurent != conccurentMod || !removable) {
-				throw new ConcurrentModificationException();
+			if (nbrOpereation != nbrOperationRefference || !removable) {
+				throw new ConcurrentModificationException("liste déja modifié");
 			}
 			if (curseur == 0) {
-				throw new NoSuchElementException();
+				throw new NoSuchElementException("liste vide");
 			}
 			for (int i = curseur; i < nbCartes-1; i++) {
 				cartes[i-1] = cartes[i];
 			}
 			nbCartes--;
-			conccurent++;
+			nbrOpereation++;
+			nbrOperationRefference++;
 			removable = false;
 			
 		}
@@ -94,6 +88,9 @@ public class Sabot implements Iterable<Carte>{
 	
 	
 	public Carte piocher() {
+		if (estVide()) {
+            throw new NoSuchElementException("Le sabot est vide");
+        }
 		Iterator<Carte> it = iterator();
 		Carte carte = it.next();
 		it.remove();
