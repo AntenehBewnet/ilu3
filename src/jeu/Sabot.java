@@ -11,7 +11,7 @@ public class Sabot implements Iterable<Carte>{
 
 	private Carte[] cartes;
 	private int nbCartes;
-	private int nbrOpereation;
+	private int nbrOpereation = 0;
 	
 	public Sabot(Carte[] cartes) {
 		this.cartes = cartes;
@@ -40,19 +40,12 @@ public class Sabot implements Iterable<Carte>{
 	
 	
 	private class SabotIterator implements Iterator<Carte>{
-		private int curseur;
-		private boolean removable;
-		private int nbrOperationRefference;
-		
-		public SabotIterator() {
-			curseur = 0;
-			removable = true;
-			nbrOperationRefference = nbrOpereation;
-		}
+		private int curseur = 0;
+		private boolean removable = true;
+		private int nbrOperationRefference = nbrOpereation;
 
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
 			return curseur < nbCartes;
 		}
 
@@ -61,26 +54,34 @@ public class Sabot implements Iterable<Carte>{
 			if (!hasNext()) {
 				throw new NoSuchElementException("la liste est fini");
 			}
+			concurrentModification();
 			removable = true;
+			nbrOpereation++;
+			nbrOperationRefference++;
 			return cartes[curseur++];
 		}
 		
 		@Override
 		public void remove() {
-			if (nbrOpereation != nbrOperationRefference || !removable) {
-				throw new ConcurrentModificationException("liste dï¿½ja modifiï¿½");
+			concurrentModification();
+			if (!removable) {
+				throw new IllegalStateException();
 			}
-			if (curseur == 0) {
-				throw new NoSuchElementException("liste vide");
+			for (int i = curseur -1 ; i < nbCartes-1; i++) {
+				cartes[i] = cartes[i+1];
 			}
-			for (int i = curseur; i < nbCartes-1; i++) {
-				cartes[i-1] = cartes[i];
-			}
+			curseur--;
 			nbCartes--;
 			nbrOpereation++;
 			nbrOperationRefference++;
 			removable = false;
 			
+		}
+		
+		public void concurrentModification() {
+			if (nbrOpereation != nbrOperationRefference) {
+				throw new ConcurrentModificationException("liste déja modifié");
+			}
 		}
 
 	}

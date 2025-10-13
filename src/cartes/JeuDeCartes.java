@@ -1,9 +1,5 @@
 package cartes;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class JeuDeCartes {
 	
 	private Configuration[] typesDeCartes = {new Configuration(new Borne(25), 10),
@@ -37,15 +33,21 @@ public class JeuDeCartes {
 	} 
 	
 	public Carte[] donnerCartes() {
-		Carte[] tousLesCartes = new Carte[102];
-		int index = 0;
+		int nbrCarte = 0;
 		for (Configuration configuration : typesDeCartes) {
-			Configuration config = configuration;	
-			for (int i = 0; i < config.nbExemplaires ; i++) {
-				tousLesCartes[index] = config.carte;
-				index++;
-			}		
+			nbrCarte += configuration.nbExemplaires;
 		}
+		Carte[] tousLesCartes = new Carte[nbrCarte];
+		
+		
+		for (int indice = 0,j=0; j < typesDeCartes.length; j++) {
+			Configuration config = typesDeCartes[j];
+			for (int i = 0; i < config.nbExemplaires; i++,indice++) {
+				tousLesCartes[indice] = config.getCarte();
+			}
+			
+		}
+		
 		return tousLesCartes;
 		
 	}
