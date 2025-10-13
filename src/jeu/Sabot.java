@@ -68,7 +68,7 @@ public class Sabot implements Iterable<Carte>{
 		@Override
 		public void remove() {
 			if (nbrOpereation != nbrOperationRefference || !removable) {
-				throw new ConcurrentModificationException("liste déja modifié");
+				throw new ConcurrentModificationException("liste dï¿½ja modifiï¿½");
 			}
 			if (curseur == 0) {
 				throw new NoSuchElementException("liste vide");

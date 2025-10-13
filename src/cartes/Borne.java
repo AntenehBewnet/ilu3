@@ -13,4 +13,12 @@ public class Borne extends Carte {
 		return km + "KM";
 	}
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Borne carte) {
+			return carte.km == km;
+		}
+		return false;
+	}
 }
