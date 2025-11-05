@@ -24,28 +24,21 @@ public class GestionCartes {
     public static <T> T extraireAvecIterator(List<T> liste) {
         if (liste == null || liste.isEmpty()) {
             throw new IllegalArgumentException("La liste est vide.");
-        }
-
-        
+        }     
         Random random = new Random();
-        int index = random.nextInt(liste.size());
-
-        
+        int index = random.nextInt(liste.size());       
         ListIterator<T> iterator = liste.listIterator();
         T element = null;
 
         for (int i = 0; i <= index; i++) {
             element = iterator.next();
-        }
-
-        
+        }     
         iterator.remove();
-
         return element;
     }
     
     
-    public <T> List<T> melanger(List<T> liste){
+    public static <T> List<T> melanger1(List<T> liste){
     	if (liste.isEmpty()) {
 			throw new IllegalArgumentException("liste vide");
 		}
@@ -61,7 +54,7 @@ public class GestionCartes {
     
     
     
-    public <T> boolean verifierMelange(List<T> l1,List<T> l2) {
+    public static <T> boolean verifierMelange1(List<T> l1,List<T> l2) {
     	
     	for (T elt : l1) {
     		if (Collections.frequency(l1, elt) != Collections.frequency(l2, elt)) {
@@ -106,7 +99,7 @@ public class GestionCartes {
     
     
     
-    public static <T> List<T> melanger1(List<T> liste) {
+    public static <T> List<T> melanger(List<T> liste) {
         if (liste == null || liste.isEmpty()) {
             throw new IllegalArgumentException("La liste ne peut pas être vide.");
         }
@@ -122,7 +115,7 @@ public class GestionCartes {
 
         return listeMelangee;
     }
-    public static <T> boolean verifierMelange1(List<T> liste1, List<T> liste2) {
+    public static <T> boolean verifierMelange(List<T> liste1, List<T> liste2) {
         
         if (liste1.size() != liste2.size()) {
             return false;

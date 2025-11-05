@@ -54,27 +54,22 @@ public class JeuDeCartes {
 	
 	
 	
-	public boolean checkCount() {
-	
-	
-	for (Configuration carte : typesDeCartes) {
-		
-		Carte[] cartes = donnerCartes();	
-		int nbrAttendu = carte.nbExemplaires;
-		int nbr = 0;
-			
-			for (Carte c : cartes) {
-				if (c.equals(carte.carte)) {
-					nbr++;
+	public boolean checkCount() {	
+		for (Configuration carte : typesDeCartes) {			
+			Carte[] cartes = donnerCartes();	
+			int nbrAttendu = carte.nbExemplaires;
+			int nbr = 0;				
+				for (Carte c : cartes) {
+					if (c.equals(carte.carte)) {
+						nbr++;
+					}
 				}
-			}
-		if (nbr != nbrAttendu) {
-			System.out.println("Erreur : " + carte.carte + " attendue " + nbrAttendu + " fois, trouvée " + nbr + " fois.");
-			return false;
+			if (nbr != nbrAttendu) {
+				System.out.println("Erreur : " + carte.carte + " attendue " + nbrAttendu + " fois, trouvée " + nbr + " fois.");
+				return false;
+			}		
 		}
-		
-		}
-	return true;
+		return true;
 	}
 	
 	
