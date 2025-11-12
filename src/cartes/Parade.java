@@ -10,5 +10,7 @@ public class Parade extends Bataille {
 	public String toString() {
 		return getType().getNomParade();
 	}
+	
+	
 
 }
