@@ -20,6 +20,7 @@ public class Borne extends Carte {
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (obj instanceof Borne carte) {
 			return carte.km == km;
 		}

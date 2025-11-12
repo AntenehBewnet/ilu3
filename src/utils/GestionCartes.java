@@ -78,8 +78,7 @@ public class GestionCartes {
 
         List<T> listeRassemblee = new ArrayList<>();
         List<T> elementsDejaTraites = new ArrayList<>(); 
-
-       
+  
         for (T element : liste) {
             if (!elementsDejaTraites.contains(element)) {
               
@@ -88,13 +87,25 @@ public class GestionCartes {
                         listeRassemblee.add(elem);
                     }
                 }
-              
                 elementsDejaTraites.add(element);
             }
         }
 
         return listeRassemblee;
     }
+    
+    /*
+    public <T> void ajouterElementsEgaux(List<T> liste, T element) {
+    	 for (T elem : liste) {
+             if (elem.equals(element)) {
+                 listeRassemblee.add(elem);
+             }
+         }
+    }
+    */
+    
+    
+    
     public static <T> boolean verifierRassemblement(List<T> liste) {
         if (liste == null || liste.isEmpty()) {
             throw new IllegalArgumentException("La liste ne peut pas être vide.");
@@ -102,6 +113,20 @@ public class GestionCartes {
 
         // Utiliser un premier ListIterator pour parcourir la liste
         ListIterator<T> it1 = liste.listIterator();
+        
+        
+        for (Iterator it3 = liste.iterator(); it3.hasNext();) {
+			T currentValue = (T) it3.next();
+			
+			
+		}
+        
+        
+        
+        
+        
+        
+        
 
         while (it1.hasNext()) {
             T currentValue = it1.next();
@@ -119,3 +144,9 @@ public class GestionCartes {
         return true;
     }
 }
+
+
+
+
+
+

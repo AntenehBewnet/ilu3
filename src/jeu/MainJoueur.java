@@ -1,17 +1,13 @@
 package jeu;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import cartes.Carte;
 
 public class MainJoueur{
 	
-	private List<Carte> main;
-	
-	public MainJoueur() {
-		this.main = new ArrayList<Carte>();
-	}
+	private List<Carte> main = new LinkedList<Carte>();
+
 	
 	public void jouer(Carte carte) {
 		main.remove(carte);
@@ -19,7 +15,7 @@ public class MainJoueur{
 	
 	public void prendre(Carte carte) {
 		assert main.contains(carte);
-		main.add(carte);
+		main.add(0,carte);
 	}
 
 	@Override

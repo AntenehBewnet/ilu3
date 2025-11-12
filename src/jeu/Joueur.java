@@ -5,12 +5,11 @@ import cartes.Carte;
 public class Joueur {
 	
 	private String nom;
-	private ZoneDeJeu zoneDeJeu;
+	private ZoneDeJeu zoneDeJeu = new ZoneDeJeu();
 	private MainJoueur main;
 	
 	public Joueur(String nom) {
 		this.nom = nom;
-		this.zoneDeJeu = new ZoneDeJeu();
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ import jeu.ZoneDeJeu;
 public class TestJoueur {
 
 	public static void main(String[] args) {
-		/*Joueur joueur = new Joueur("Alice");
+	/*	Joueur joueur = new Joueur("Alice");
 
 
         System.out.println("Deposer carte 25 km");
@@ -40,11 +40,11 @@ public class TestJoueur {
         joueur.deposer(new FinLimite());
         System.out.println("Limite : " + joueur.getZoneDeJeu().donnerLimitationVitesse()); // Doit afficher 200
         
-        */
+        
+		*/
+
+/*
 		
-
-
-		/*
 				// TP3 PARTIE 2
 			ZoneDeJeu zoneDeJeu = new ZoneDeJeu();
 			System.out.println("Deposer carte 25 km");
@@ -60,8 +60,10 @@ public class TestJoueur {
 			zoneDeJeu.deposer(new FinLimite());
 			System.out.println("Limite : " + zoneDeJeu.donnerLimitationVitesse());
 
-			*/
+	*/		
 			
+		
+		
 				// TP3 PARTIE 3
 			boolean depotOK = false;
 			ZoneDeJeu zoneDeJeu = new ZoneDeJeu();

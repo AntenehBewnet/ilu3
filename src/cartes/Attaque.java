@@ -11,4 +11,12 @@ public class Attaque extends Bataille {
 		return getType().getNomAttaque();
 	}
 
+	
+	@Override
+    public boolean equals(Object obj) {
+		super.equals(obj);
+        Carte autre = (Carte) obj;
+        return this.type == autre.type;                // même type logique
+    }
+	
 }
