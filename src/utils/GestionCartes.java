@@ -38,66 +38,6 @@ public class GestionCartes {
     }
     
     
-    public static <T> List<T> melanger1(List<T> liste){
-    	if (liste.isEmpty()) {
-			throw new IllegalArgumentException("liste vide");
-		}
-    	
-    	T elt;
-    	List<T> nouvelleListe = new ArrayList<>();
-    	while (liste.isEmpty()) {
-			elt = extraire(liste);
-			nouvelleListe.add(elt);
-		}
-    	return nouvelleListe;
-    }
-    
-    
-    
-    public static <T> boolean verifierMelange1(List<T> l1,List<T> l2) {
-    	
-    	for (T elt : l1) {
-    		if (Collections.frequency(l1, elt) != Collections.frequency(l2, elt)) {
-				return false;
-			}	
-		}
-    	return true;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     public static <T> List<T> melanger(List<T> liste) {
         if (liste == null || liste.isEmpty()) {
@@ -129,8 +69,6 @@ public class GestionCartes {
                 return false;
             }
         }
-
-        // Si tous les éléments ont le même nombre d'occurrences, les listes sont équivalentes
         return true;
     }
     public static <T> List<T> rassembler(List<T> liste) {
@@ -139,7 +77,7 @@ public class GestionCartes {
         }
 
         List<T> listeRassemblee = new ArrayList<>();
-        List<T> elementsDejaTraites = new ArrayList<>(); // Pour garder une trace des éléments déjà rassemblés
+        List<T> elementsDejaTraites = new ArrayList<>(); 
 
        
         for (T element : liste) {
@@ -173,15 +111,11 @@ public class GestionCartes {
 
             while (it2.hasNext()) {
                 T nextValue = it2.next();
-
-                // Si une occurrence de l'ancienne valeur est trouvée, les éléments ne sont pas consécutifs
                 if (nextValue.equals(currentValue)) {
                     return false;
                 }
             }
         }
-
-        // Si aucune duplication n'est trouvée après un changement d'élément, les éléments identiques sont consécutifs
         return true;
     }
 }
